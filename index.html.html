@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ग्रामपंचायत झोलेगाव - छत्रपती संभाजीनगर</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a5f3f;
+            --primary-light: #2d8659;
+            --primary-dark: #0f3d29;
+            --secondary: #f59e0b;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            animation: slideDown 0.6s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: var(--primary);
+                padding: 2rem;
+                gap: 1rem;
+                display: none;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            animation: slideDown 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--text);
+        }
+
+        .btn-primary:hover {
+            background: #f97316;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideDown 0.6s ease;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 5px solid var(--primary);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .info-box:hover {
+            transform: scale(1.05);
+        }
+
+        .info-box .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .info-box .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+
+        .contact-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--text-light);
+            word-break: break-word;
+        }
+
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Members Grid */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .member-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .member-content {
+            padding: 1.5rem;
+        }
+
+        .member-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .member-role {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-phone {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* MREGS Table */
+        .mregs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .mregs-table th {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .mregs-table td {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .mregs-table tbody tr:hover {
+            background: #f3f4f6;
+        }
+
+        .mregs-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+        }
+
+        /* Gallery Slider */
+        .gallery-slider {
+            position: relative;
+            max-width: 600px;
+            margin: 2rem auto;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 18px;
+            transition: var(--transition);
+            border-radius: 3px;
+            background-color: rgba(0,0,0,0.5);
+            user-select: none;
+            z-index: 100;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+
+        .dots {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background-color: var(--primary);
+        }
+
+        .dot:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Home Page Gallery Slider */
+        .home-gallery-slider {
+            position: relative;
+            max-width: 700px;
+            margin: 3rem auto;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .home-slider-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+        }
+
+        .home-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .home-slide.active {
+            display: block;
+        }
+
+        .home-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .home-prev, .home-next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 18px;
+            transition: var(--transition);
+            border-radius: 3px;
+            background-color: rgba(0,0,0,0.5);
+            user-select: none;
+            z-index: 100;
+        }
+
+        .home-next {
+            right: 0;
+        }
+
+        .home-prev {
+            left: 0;
+        }
+
+        .home-prev:hover, .home-next:hover {
+            background-color: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+
+        .home-dots {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .home-dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .home-dot.active {
+            background-color: var(--primary);
+        }
+
+        .home-dot:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Work Page Gallery Slider */
+        .work-gallery-slider {
+            position: relative;
+            max-width: 700px;
+            margin: 2rem auto;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .work-slider-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+        }
+
+        .work-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .work-slide.active {
+            display: block;
+        }
+
+        .work-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .work-prev, .work-next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 18px;
+            transition: var(--transition);
+            border-radius: 3px;
+            background-color: rgba(0,0,0,0.5);
+            user-select: none;
+            z-index: 100;
+        }
+
+        .work-next {
+            right: 0;
+        }
+
+        .work-prev {
+            left: 0;
+        }
+
+        .work-prev:hover, .work-next:hover {
+            background-color: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+
+        .work-dots {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .work-dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .work-dot.active {
+            background-color: var(--primary);
+        }
+
+        .work-dot:hover {
+            background-color: var(--primary-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo" onclick="showPage('home')">
+            🏛️ ग्रामपंचायत झोलेगाव
+        </a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a onclick="showPage('home')">मुख्य पृष्ठ</a></li>
+            <li><a onclick="showPage('about')">आमच्याविषयी</a></li>
+            <li><a onclick="showPage('members')">सदस्य</a></li>
+            <li><a onclick="showPage('mregs')">MREGS</a></li>
+            <li><a onclick="showPage('work')">काम</a></li>
+            <li><a onclick="showPage('gallery')">गॅलरी</a></li>
+            <li><a onclick="showPage('contact')">संपर्क</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>ग्रामपंचायत झोलेगाव</h1>
+                <p>छत्रपती संभाजीनगर जिल्हा</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showPage('about')">आमच्याविषयी जाणून घ्या</button>
+                    <button class="btn btn-secondary" onclick="showPage('contact')">आमच्याशी संपर्क साधा</button>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="section-title">
+                    <h2>गाव माहिती</h2>
+                    <p>झोलेगाव ग्रामपंचायतची मूलभूत माहिती</p>
+                </div>
+
+                <div class="home-gallery-slider">
+                    <div class="home-slider-container">
+                        <div class="home-slide active">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/05b99b5e-fd8c-40c4-acd2-26652b0d3b55" alt="झोलेगाव - छत्रपती संभाजीनगर">
+                        </div>
+                        <div class="home-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/b9279e9a-7bc0-466c-8b1d-3525af797d6e" alt="झोलेगाव समाचार">
+                        </div>
+                        <div class="home-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/55949db8-a5a7-4ef8-a6b2-91abc3b5090b" alt="झोलेगाव माहिती">
+                        </div>
+                        <div class="home-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/66ae87ed-600b-471d-b852-21faada424bd" alt="झोलेगाव दस्तऐज">
+                        </div>
+                        <div class="home-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/2439a94b-9daf-4eff-8735-e81c5fb25572" alt="झोलेगाव कार्यक्रम">
+                        </div>
+                        <div class="home-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/4042b114-99e3-45bf-908c-25a80099596e" alt="झोलेगाव समुदाय">
+                        </div>
+                        <a class="home-prev" onclick="changeHomeSlide(-1)">&#10094;</a>
+                        <a class="home-next" onclick="changeHomeSlide(1)">&#10095;</a>
+                    </div>
+                    <div class="home-dots">
+                        <span class="home-dot active" onclick="currentHomeSlide(0)"></span>
+                        <span class="home-dot" onclick="currentHomeSlide(1)"></span>
+                        <span class="home-dot" onclick="currentHomeSlide(2)"></span>
+                        <span class="home-dot" onclick="currentHomeSlide(3)"></span>
+                        <span class="home-dot" onclick="currentHomeSlide(4)"></span>
+                        <span class="home-dot" onclick="currentHomeSlide(5)"></span>
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-box">
+                        <div class="number">817</div>
+                        <div class="label">एकूण लोकसंख्या (2011)</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="number">03</div>
+                        <div class="label">वॉर्ड संख्या</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="number">02/12/2021</div>
+                        <div class="label">निवडणूक तारीख</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="number">01</div>
+                        <div class="label">अंगणवाडी</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>आमच्याविषयी</h2>
+                    <p>झोलेगाव ग्रामपंचायतची तपशीली माहिती</p>
+                </div>
+
+                <div class="grid">
+                    <div class="card">
+                        <h3>📍 स्थान</h3>
+                        <p><strong>जिल्हा:</strong> छत्रपती संभाजीनगर<br><strong>गाव:</strong> झोलेगाव</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>👥 लोकसंख्या</h3>
+                        <p><strong>एकूण:</strong> 817 (2011 नुसार)<br><strong>वॉर्ड संख्या:</strong> 03</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>👶 विविध माहिती</h3>
+                        <p><strong>0-6 वयोग्रुप:</strong> 102 (पुरुष 54 + स्त्री 48)<br><strong>SC वर्ग:</strong> 90 (पुरुष 42 + स्त्री 48)</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>🏫 शिक्षा सुविधा</h3>
+                        <p><strong>जिल्हा परिषद शाळा:</strong> 1 (इयत्ता 1-5 मान)</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>👶 अंगणवाडी</h3>
+                        <p><strong>संख्या:</strong> 01</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>⛪ स्मशानभूमी</h3>
+                        <p><strong>संख्या:</strong> 01</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>📅 निवडणूक</h3>
+                        <p><strong>तारीख:</strong> 2 डिसेंबर 2021</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Members Page -->
+        <section id="members" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>ग्रामपंचायत सदस्य</h2>
+                    <p>झोळेगाव ग्रामपंचायत संचालन समिती</p>
+                </div>
+
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>जयश्री जनार्दन काकडे</h4>
+                            <div class="member-role">सरपंच</div>
+                            <div class="member-phone">📱 7066911341</div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>योगिता गणेश रणमले</h4>
+                            <div class="member-role">उपसरपंच</div>
+                            <div class="member-phone">📱 9890568774</div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>J.R पाटील</h4>
+                            <div class="member-role">ग्रामपंचायत अधिकारी</div>
+                            <div class="member-phone">📱 संपर्क केंद्रावर उपलब्ध</div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>मनोज काकडे</h4>
+                            <div class="member-role">ग्रामपंचायत कर्मचारी</div>
+                            <div class="member-phone">📱 संपर्क केंद्रावर उपलब्ध</div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>कैलास जाधव</h4>
+                            <div class="member-role">ग्रामपंचायत ऑपरेटर</div>
+                            <div class="member-phone">📱 संपर्क केंद्रावर उपलब्ध</div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>भरत काकडे</h4>
+                            <div class="member-role">रोजगार सेवक</div>
+                            <div class="member-phone">📱 संपर्क केंद्रावर उपलब्ध</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top: 3rem;">
+                    <h2>ग्रामपंचायत सदस्य</h2>
+                </div>
+
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>रेखा चरणसिंह भोपळावत</h4>
+                            <div class="member-role">सदस्य</div>
+                            <div class="member-phone">📱 7020894588</div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>सोमनाथ पोपट गायकवाड</h4>
+                            <div class="member-role">सदस्य</div>
+                            <div class="member-phone">📱 9356132355</div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>मंगलबाई लालचंद डेडवाल</h4>
+                            <div class="member-role">सदस्य</div>
+                            <div class="member-phone">📱 9923030589</div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>शांताबाई सुखदेव काकडे</h4>
+                            <div class="member-role">सदस्य</div>
+                            <div class="member-phone">📱 9689565626</div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-content">
+                            <h4>अजय शिवाजी काकडे</h4>
+                            <div class="member-role">सदस्य</div>
+                            <div class="member-phone">📱 7507732383</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Page -->
+        <section id="gallery" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>गॅलरी</h2>
+                    <p>झोलेगाव ग्रामपंचायतचे फोटो</p>
+                </div>
+
+                <div class="gallery-slider">
+                    <div class="slider-container">
+                        <div class="slide active">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/711aff1e-3e4b-4dea-a7b3-5bb0ee649edd" alt="ग्रामपंचायत झोलेगाव - छत्रपती संभाजीनगर">
+                        </div>
+                        <div class="slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/88d121b7-1541-4111-96e1-3f86b4051e0b" alt="झोलेगाव माहिती">
+                        </div>
+                        <div class="slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/b7087c42-e955-45c9-a11e-c16a148b5d9a" alt="झोलेगाव सदस्य माहिती">
+                        </div>
+                        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                    </div>
+                    <div class="dots">
+                        <span class="dot active" onclick="currentSlide(0)"></span>
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>📸 ग्रामपंचायत गॅलरी</h3>
+                    <p>झोलेगाव ग्रामपंचायतचे महत्वाचे दस्तऐज आणि माहिती वरील गॅलरीमध्ये दर्शविली आहे। आपण बाणांचा वापर करून फोटो बदलू शकता किंवा खाली दिलेल्या डॉट्सवर क्लिक करू शकता।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Page -->
+        <section id="work" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>गाव विकास काम</h2>
+                    <p>झोलेगाव ग्रामपंचायतचे विविध विकास कार्यक्रम</p>
+                </div>
+
+                <div class="work-gallery-slider">
+                    <div class="work-slider-container">
+                        <div class="work-slide active">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/8c7ddf45-bc7e-4825-a030-2470cf21e411" alt="गाव विकास काम - रस्ते निर्माण आणि समाज कार्यक्रम">
+                        </div>
+                        <div class="work-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/a03b1f2f-d2cc-410c-be48-f517c3ba4c1d" alt="गाव विकास काम - सदस्य आणि समुदाय">
+                        </div>
+                        <div class="work-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/a667a173-634a-49d2-943a-29c7f63e8a4b" alt="गाव विकास काम - रस्ते विकास प्रकल्प">
+                        </div>
+                        <div class="work-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/f3937263-014f-483a-8945-a84d84fe4948" alt="गाव विकास काम - घर निर्माण आणि सुविधा">
+                        </div>
+                        <div class="work-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/1a041de6-a084-4fca-a02c-817ace93aa83" alt="गाव विकास काम - पर्यावरण संरक्षण">
+                        </div>
+                        <div class="work-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/459e319a-2a9c-4b52-a01f-1ea7121e02c5" alt="गाव विकास काम - कार्यक्रम आणि समाज सेवा">
+                        </div>
+                        <div class="work-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/c9d484d3-0e73-4786-bf59-4a15abfc78e2" alt="गाव विकास काम - पूजा कार्यक्रम आणि समारोह">
+                        </div>
+                        <div class="work-slide">
+                            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/c8f04acd-1a5a-4f5f-8b47-0556237cf428" alt="गाव विकास काम - समाज सामूहिक कार्यक्रम">
+                        </div>
+                        <a class="work-prev" onclick="changeWorkSlide(-1)">&#10094;</a>
+                        <a class="work-next" onclick="changeWorkSlide(1)">&#10095;</a>
+                    </div>
+                    <div class="work-dots">
+                        <span class="work-dot active" onclick="currentWorkSlide(0)"></span>
+                        <span class="work-dot" onclick="currentWorkSlide(1)"></span>
+                        <span class="work-dot" onclick="currentWorkSlide(2)"></span>
+                        <span class="work-dot" onclick="currentWorkSlide(3)"></span>
+                        <span class="work-dot" onclick="currentWorkSlide(4)"></span>
+                        <span class="work-dot" onclick="currentWorkSlide(5)"></span>
+                        <span class="work-dot" onclick="currentWorkSlide(6)"></span>
+                    </div>
+                </div>
+
+                <div class="grid" style="margin-top: 3rem;">
+                    <div class="card">
+                        <h3>🏗️ रस्ते विकास</h3>
+                        <p>गावातील रस्त्यांचे निर्माण आणि दुरुस्ती कार्य राबविण्यात येत आहे. कंक्रीट रस्ते बांधकाम प्रकल्पांचा अंतर्भाग.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>💧 पाणी पुरवठा</h3>
+                        <p>गावातील सर्व घरांना स्वच्छ पिण्याचे पाणी पुरवठा करण्याच्या कामांचा क्रियान्वयन.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>🌾 कृषी विकास</h3>
+                        <p>वैज्ञानिक कृषी पद्धती आणि सिंचन सुविधांचा विस्तार. शेतकऱ्यांना आधुनिक यंत्रे आणि तंत्रज्ञान प्रदान.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>🏘️ घरांचे निर्माण</h3>
+                        <p>गरीब परिवारांसाठी आश्रयस्थान योजनेंतर्गत घर निर्माण कार्य.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>🏫 शिक्षा सुविधा</h3>
+                        <p>शाळेचे भवन सुधारणा, शिक्षण साहित्य आणि खेळ मैदानांचा विकास.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>🌳 पर्यावरण संरक्षण</h3>
+                        <p>वृक्षारोपण, गाव सफाई आणि पर्यावरण संरक्षण योजना.</p>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top: 3rem;">
+                    <h2>चल सुरु असलेले काम</h2>
+                    <p>वर्तमान कालावधीत राबविण्यात येत असलेले मुख्य प्रकल्प</p>
+                </div>
+
+                <div class="grid">
+                    <div class="card">
+                        <h3>📍 पाण्याचा पाईपलाईन स्थापना</h3>
+                        <p><strong>स्थिती:</strong> चल<br><strong>बजेट:</strong> लागू<br><strong>लाभार्थी:</strong> सर्व घर</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>🛣️ गावातील मुख्य रस्ता निर्माण</h3>
+                        <p><strong>स्थिती:</strong> चल<br><strong>लांबी:</strong> 2.5 किमी<br><strong>प्रगती:</strong> 60%</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>🌱 सिंचन विहीर विकास</h3>
+                        <p><strong>स्थिती:</strong> चल<br><strong>संख्या:</strong> 25 विहीर<br><strong>उद्देश:</strong> कृषी उत्पादन वाढ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MREGS Page -->
+        <section id="mregs" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>MREGS कार्यक्रम</h2>
+                    <p>महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार योजना</p>
+                </div>
+
+                <div class="card" style="margin-bottom: 2rem;">
+                    <p>MREGS योजनेंतर्गत झोलेगाव ग्रामपंचायतात राबविलेल्या विविध कामांची तपशीली माहिती खालीलप्रमाणे:</p>
+                </div>
+
+                <h3 style="color: var(--primary); margin: 2rem 0 1rem 0;">गायगोठा मजूर</h3>
+                <table class="mregs-table">
+                    <thead>
+                        <tr>
+                            <th>विवरण</th>
+                            <th>संख्या</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>मंजूर काम</td>
+                            <td>56</td>
+                        </tr>
+                        <tr>
+                            <td>सुरु केलेले काम</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>सुरु न झालेले</td>
+                            <td>36</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="color: var(--primary); margin: 2rem 0 1rem 0;">मातोश्री पाणंद रस्ते</h3>
+                <table class="mregs-table">
+                    <thead>
+                        <tr>
+                            <th>विवरण</th>
+                            <th>संख्या</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>मंजूर काम</td>
+                            <td>01</td>
+                        </tr>
+                        <tr>
+                            <td>सुरु न झालेले</td>
+                            <td>01</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="color: var(--primary); margin: 2rem 0 1rem 0;">वै.शिंचन विहीर</h3>
+                <table class="mregs-table">
+                    <thead>
+                        <tr>
+                            <th>विवरण</th>
+                            <th>संख्या</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>मंजूर काम</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>सुरु केलेले काम</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>सुरु न झालेले</td>
+                            <td>21</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>आमच्याशी संपर्क साधा</h2>
+                    <p>झोलेगाव ग्रामपंचायत संपर्क विवरण</p>
+                </div>
+
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h4>🏛️ ग्रामपंचायत कार्यालय</h4>
+                        <p><strong>गाव:</strong> झोलेगाव<br><strong>जिल्हा:</strong> छत्रपती संभाजीनगर<br>महाराष्ट्र</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <h4>👩‍💼 सरपंच</h4>
+                        <p><strong>नाव:</strong> जयश्री जनार्दन काकडे</p>
+                        <a href="tel:7066911341">📱 7066911341</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <h4>👨‍💼 उपसरपंच</h4>
+                        <p><strong>नाव:</strong> योगिता गणेश रानमाले</p>
+                        <a href="tel:9890568774">📱 9890568774</a>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>🕐 कार्यालय वेळ</h3>
+                    <p><strong>सोमवार - शुक्रवार:</strong> 10:00 AM - 5:00 PM<br><strong>शनिवार:</strong> 10:00 AM - 1:00 PM<br><strong>रविवार:</strong> बंद</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 ग्रामपंचायत झोलेगाव, छत्रपती संभाजीनगर। सर्व हक्क सुरक्षित।</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Close mobile menu
+            document.getElementById('navMenu').classList.remove('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const nav = document.querySelector('nav');
+            if (!nav.contains(e.target)) {
+                document.getElementById('navMenu').classList.remove('active');
+            }
+        });
+
+        // Gallery Slider Functions
+        let currentSlideIndex = 0;
+
+        function changeSlide(n) {
+            showSlide(currentSlideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlide(currentSlideIndex = n);
+        }
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (n >= slides.length) { currentSlideIndex = 0; }
+            if (n < 0) { currentSlideIndex = slides.length - 1; }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        // Home Page Gallery Slider Functions
+        let currentHomeSlideIndex = 0;
+
+        function changeHomeSlide(n) {
+            showHomeSlide(currentHomeSlideIndex += n);
+        }
+
+        function currentHomeSlide(n) {
+            showHomeSlide(currentHomeSlideIndex = n);
+        }
+
+        function showHomeSlide(n) {
+            const slides = document.querySelectorAll('.home-slide');
+            const dots = document.querySelectorAll('.home-dot');
+            
+            if (n >= slides.length) { currentHomeSlideIndex = 0; }
+            if (n < 0) { currentHomeSlideIndex = slides.length - 1; }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[currentHomeSlideIndex].classList.add('active');
+            dots[currentHomeSlideIndex].classList.add('active');
+        }
+
+        // Work Page Gallery Slider Functions
+        let currentWorkSlideIndex = 0;
+
+        function changeWorkSlide(n) {
+            showWorkSlide(currentWorkSlideIndex += n);
+        }
+
+        function currentWorkSlide(n) {
+            showWorkSlide(currentWorkSlideIndex = n);
+        }
+
+        function showWorkSlide(n) {
+            const slides = document.querySelectorAll('.work-slide');
+            const dots = document.querySelectorAll('.work-dot');
+            
+            if (n >= slides.length) { currentWorkSlideIndex = 0; }
+            if (n < 0) { currentWorkSlideIndex = slides.length - 1; }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[currentWorkSlideIndex].classList.add('active');
+            dots[currentWorkSlideIndex].classList.add('active');
+        }
+    </script>
+</body>
+</html>
